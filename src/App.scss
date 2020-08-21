@@ -1,0 +1,60 @@
+body {
+    background-color: #1E555C;
+    color: white;
+    text-align: center;
+    #main {
+      margin-top: 100px;
+    }
+    .length {
+      display: inline-block;
+      justify-content: center;
+      .label {
+        display: block;
+        font-size: 24px;
+        padding: 0px 20px;
+        font-weight: bold
+      }
+      .btn {
+        display: inline-block;
+        background-color: #1E555C;
+        color: white;
+        font-size: 24px;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+      }
+      .lengthdisplay {
+        display: inline-block;
+        margin: 0px 10px;
+        font-size: 24px;
+        font-weight: bold;
+      }
+    }
+    #timer-wrapper {
+      border: solid 1px white;
+      width: 200px;
+      margin: 10px auto;
+      padding-bottom: 10px;
+      border-radius: 10px;
+      font-weight: bold;
+      #timer-label {
+        font-size: 32px;
+      }
+      #time-left {
+        font-size: 40px;
+      }
+      button {
+        background-color: #1E555C;
+        border: none;
+        cursor: pointer;
+      }
+      .fa {
+        background-color: #1E555C;
+        border: none;
+        color: white;
+      }
+    }
+    .timerred{
+      color: red;
+    }
+  }
