@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from './logo.svg';
+import beepSound from './BeepSound.wav'
 import './App.css';
 
 class Pomodoro extends React.Component {
@@ -21,12 +21,12 @@ class Pomodoro extends React.Component {
   }
   handleBreaks(e) {
     if (!this.state.status) {
-      if (e.target.value == "decrement" && this.state.break >= 2) {      
+      if (e.target.value === "decrement" && this.state.break >= 2) {      
         this.setState({
           break: this.state.break - 1
         })
       }
-      else if (e.target.value == "increment" && this.state.break <=59) {
+      else if (e.target.value === "increment" && this.state.break <=59) {
         this.setState({
           break: this.state.break + 1
         })
@@ -36,7 +36,7 @@ class Pomodoro extends React.Component {
   
   handleSessions(e) {
     if (!this.state.status) {
-      if (e.target.value == "decrement" && this.state.session >=2) {
+      if (e.target.value === "decrement" && this.state.session >=2) {
         if (this.state.session <= 10) {
           this.setState({
             session: this.state.session - 1,
@@ -49,7 +49,7 @@ class Pomodoro extends React.Component {
           })
         }
       }                      
-      else if (e.target.value == "increment" && this.state.session <=59) {
+      else if (e.target.value === "increment" && this.state.session <=59) {
         if (this.state.session <= 8) {
           this.setState({
             session: this.state.session + 1,
@@ -66,14 +66,14 @@ class Pomodoro extends React.Component {
   }
   
   handleStartStop() {
-    if (this.state.status == false) {
+    if (this.state.status === false) {
       this.interval_id = setInterval(this.handleCountDown, 1000)
       this.secondsRemaining = Number((this.state.display.slice(0,2) * 60)) + Number(this.state.display.slice(3,5)) - 1
       this.setState({
         status: true
     })
     }
-    else if (this.state.status == true) {
+    else if (this.state.status === true) {
       clearInterval(this.interval_id)
       this.setState({
         status: false
@@ -85,7 +85,7 @@ class Pomodoro extends React.Component {
     var min = Math.floor(this.secondsRemaining / 60) 
     var sec = Math.floor(this.secondsRemaining % 60)
     
-    if (min == 0 && sec == 0) {
+    if (min === 0 && sec === 0) {
       this.secondsRemaining = this.state.break * 60 + 1
       this.beep.play()
       this.setState({
@@ -95,13 +95,13 @@ class Pomodoro extends React.Component {
       this.setState({
         display: min + ":" + sec
       })
-      if (min >=1 && sec >=0 && this.state.timerclass == "timerred" && this.state.displayname =="Session") {
+      if (min >=1 && sec >=0 && this.state.timerclass === "timerred" && this.state.displayname ==="Session") {
         this.setState ({
           timerclass: "timerstandard",
           displayname: "Break"
         })
       }
-      if (min >=1 && sec >=0 && this.state.timerclass == "timerred" && this.state.displayname =="Break") {
+      if (min >=1 && sec >=0 && this.state.timerclass === "timerred" && this.state.displayname ==="Break") {
         this.setState ({
           timerclass: "timerstandard",
           displayname: "Session"
@@ -122,7 +122,7 @@ class Pomodoro extends React.Component {
           display: "0" + min + ":" + "0" + sec 
         })
       }      
-      if (min == 0 && sec == 59) {
+      if (min === 0 && sec === 59) {
         this.setState({
           timerclass: "timerred"
         })
@@ -163,9 +163,11 @@ class Pomodoro extends React.Component {
           />
         <audio 
           ref={ref => this.beep = ref}
-          id="beep" 
+          id="beep"
           preload="auto"
-          src="https://goo.gl/65cBl1"
+          crossOrigin="*"
+          // src="https://goo.gl/65cBl1"
+          src={beepSound}
           />
       </div>
       )
